@@ -1,28 +1,64 @@
--- GRUVBOX
-return {
-  "ellisonleao/gruvbox.nvim",
-  priority = 1000, -- make sure to load this before all the other start plugins
+return { 
+  "rose-pine/neovim",
+  priority = 1000,
   config = function()
-    require("gruvbox").setup({
-      overrides = {
-        -- THIS BLOCK
-        SignColumn = { bg = "#282828" },
-        NvimTreeCutHL = { fg = "#fb4934", bg = "#282828" },
-        NvimTreeCopiedHL = { fg = "#b8bb26", bg = "#282828" },
-        DiagnosticSignError = { fg = "#fb4934", bg = "#282828" },
-        DiagnosticSignWarn = { fg = "#fabd2f", bg = "#282828" },
-        DiagnosticSignHint = { fg = "#8ec07c", bg = "#282828" },
-        DiagnosticSignInfo = { fg = "#d3869b", bg = "#282828" },
-        -- OR THIS BLOCK
-        -- NvimTreeCutHL = { fg="#fb4934", bg="#3c3836" },
-        -- NvimTreeCopiedHL = { fg="#b8bb26", bg="#3c3836" }
-        -- END
-      }
-    })
-    vim.cmd("colorscheme gruvbox")
+    require('rose-pine').setup({
+	  --- @usage 'auto'|'main'|'moon'|'dawn'
+	  variant = 'main',
+	  --- @usage 'main'|'moon'|'dawn'
+	  dark_variant = 'main',
+	  bold_vert_split = false,
+	  dim_nc_background = false,
+	  disable_background = true,
+	  disable_float_background = false,
+	  disable_italics = false,
+
+	  --- @usage string hex value or named color from rosepinetheme.com/palette
+	  groups = {
+		background = 'base',
+		background_nc = '_experimental_nc',
+		panel = 'surface',
+		panel_nc = 'base',
+		border = 'highlight_med',
+		comment = 'muted',
+		link = 'iris',
+		punctuation = 'subtle',
+
+		error = 'love',
+		hint = 'iris',
+		info = 'foam',
+		warn = 'gold',
+
+		headings = {
+			h1 = 'iris',
+			h2 = 'foam',
+			h3 = 'rose',
+			h4 = 'gold',
+			h5 = 'pine',
+			h6 = 'foam',
+		}
+		-- or set all headings at once
+		-- headings = 'subtle'
+	},
+
+	-- Change specific vim highlight groups
+	-- https://github.com/rose-pine/neovim/wiki/Recipes
+	highlight_groups = {
+		ColorColumn = { bg = 'rose' },
+
+		-- Blend colours against the "base" background
+		CursorLine = { bg = 'foam', blend = 10 },
+		StatusLine = { fg = 'love', bg = 'love', blend = 10 },
+
+		-- By default each group adds to the existing config.
+		-- If you only want to set what is written in this config exactly,
+		-- you can set the inherit option:
+		Search = { bg = 'gold', inherit = false },
+	}
+  })
+  vim.cmd("colorscheme rose-pine")
   end,
 }
-
 -- -- KANAGAWA
 -- return {
 --   "rebelot/kanagawa.nvim",
