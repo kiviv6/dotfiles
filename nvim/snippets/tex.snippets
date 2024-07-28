@@ -1,5 +1,5 @@
 # -- SNIPPETS --
-#
+
 # new glossary entry
 snippet gloss "Glossary Entry"  b
 	\newglossaryentry{${1:entry}}{
@@ -8,35 +8,6 @@ snippet gloss "Glossary Entry"  b
 			description = {${4:description}}
 	}
 #
-
-
-
-# beamer frame enviornment
-snippet frame "Beamer Frame" b
-	\begin{frame}
-
-		\textbf{${1:label}} ${2:claim}
-		\vspace{.2in}
-		\pause
-
-
-	\end{frame}
-
-	%%% -------------------------------------------------------
-#
-
-
-
-
-# beamer item enviornment
-snippet bemit "Beamer Item" b
-	\textbf{${1:label}} ${2:claim}
-	\vspace{.2in}
-	\pause
-#
-
-
-
 
 # custom theorem enviornment
 snippet customthm "Custom Theorem" b
@@ -50,30 +21,11 @@ snippet customthm "Custom Theorem" b
 	\end{Answer}
 #
 
-
-# factoidbox enviornment
-snippet factoidbox "Factoid Box" b
-	\label{rule:${2:$1}}
-	\factoidbox{
-		\textbf{(${1:name})} ${0}
-	}
-#
-
 # framed text enviornment
 snippet textbox "Text Box" b
 	\begin{tcolorbox}
 		${0}
 	\end{tcolorbox}
-#
-
-# new command
-snippet qt "New Command" b
-	\qt{${1:\forall}}{${2:\alpha}}${0}
-#
-
-# new command
-snippet qte "New Command" b
-	\qt{${1:\exists}}{${2:\alpha}}${0}
 #
 
 # new command
@@ -87,14 +39,14 @@ snippet up "Use Package" b
 #
 
 # \begin{}...\end{}
-snippet begin "Begin End"
+snippet beg "Begin End"
 	\begin{${1:env}}
 		${2:${VISUAL}}
 	\end{$1}${0}
 #
 
 # Align(ed)
-snippet align "Align Env" b
+snippet ali "Align Env" b
 	\begin{align${1:ed}}
 		\label{${2:name}}
 		${0}
@@ -123,20 +75,20 @@ snippet labelalign "Label Align" b
 # Enumerate
 snippet enum "Enumerate" b
 	\begin{enumerate}
-		\item[${1:\it }${2}:] ${0}
+		\item[${1:\it }${2:Label:}] ${0}
 	\end{enumerate}
 #
 
 # Itemize
 snippet item "Itemize" b
 	\begin{itemize}
-		\item[${1:\it} ${2:Label:}] ${0}
+		\item[${1}] ${0}
 	\end{itemize}
 #
 
 #Item
 snippet i "Item"
-	\item[${1:\it} ${2}:] ${0}
+	\item[${1}] ${0}
 #
 
 # Cases
@@ -228,10 +180,6 @@ snippet ms "Mathscr" w
 	\mathscr{${1}}${0}
 #
 
-snippet bref "Bold Ref" w
-	\textbf{\ref{${1:Ref}}}${0}
-#
-
 #misc
 snippet fproof "Footnote Proof" bi
 	\footnote{\textit{Proof:} ${1:Begin} \qed}${0}
@@ -246,7 +194,7 @@ snippet fn "Footnote" wi
 #
 
 snippet fig "Figure environment" b
-	\begin{figure}
+	\begin{figure}[${5:H}]
 	\begin{center}
 		\includegraphics[scale=${1}]{Figures/${2}}
 	\end{center}
@@ -268,15 +216,8 @@ snippet tikz "Tikz environment" b
 	\end{figure}
 	${0}
 
-snippet rule "Rule" bi
-	\factoidbox{
-	\begin{Rthm} \label{rule:${4:label}}
-		\textbf{($${1:\boldsymbol}${2:SYM}$${3:IE})}~~ ${0:${VISUAL}}
-	\end{Rthm}
-	}
-
 snippet lemma "Lemma" bi
-	\begin{Lthm} \label{lemma:${1:label}}
+	\begin{Lthm} \label{${1:label}}
 		${0:${VISUAL}}
 	\end{Lthm}
 
@@ -291,14 +232,9 @@ snippet thrm "Theorem" bi
 	\end{theorem}
 
 snippet prf "Proof" bi
-	\begin{quote} 
-		\textit{Proof:} ${0:${VISUAL}}
-	\end{quote}
-
-snippet def "Definition" bi
-	\begin{definition}[$1]
+	\begin{proof} 
 		${0:${VISUAL}}
-	\end{definition}
+	\end{proof}
 
 snippet prob "Problem" bi
 	\begin{problem}[$1]
@@ -315,7 +251,168 @@ snippet example "Example" bi
 		${0:${VISUAL}}
 	\end{example}
 
+snippet => "implies" Ai
+	\implies 
 
+snippet =< "implied by" Ai
+	\impliedby 
+
+snippet iff "iff" Ai
+	\iff 
+
+snippet mk "Math" wA
+	$${1}$
+
+snippet dm "Math" wA
+	\[
+	${1:${VISUAL}}
+	\] $0
+
+snippet frac "Fraction" iA
+	\\frac{$1}{$2}$0
+
+snippet inn "in " iA
+	\in 
+
+snippet notin "not in " iA
+	\not\in 
+
+snippet RR "real" iA
+	\mathbb{R}
+
+snippet CC "C" iA
+	\mathbb{C}
+
+snippet NN "N" iA
+	\mathbb{N}
+
+snippet ZZ "Z" iA
+	\mathbb{Z}
+
+snippet dint "integral" wA
+	\int_{${1:-\infty}}^{${2:\infty}} ${3} \,d${4:x} $0
+
+snippet int "integral" wA 
+	\int ${1} \,d${2:x} $0
+
+snippet lim "limit" w
+	\lim_{${1:n} \to ${2:\infty}} 
+
+snippet sum "sum" w
+	\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+
+snippet sq "\sqrt{}" iA
+	\sqrt{${1:${VISUAL}}} $0
+
+snippet td "to the ... power" iA
+	^{$1}$0
+
+snippet __ "subscript" iA
+	_{$1}$0
+
+snippet qstn "Question" iA
+	\begin{question}{$1}{}
+		${0:${VISUAL}}
+	\end{question}
+
+snippet def "definition" iA
+	\begin{definition}[colbacktitle=red!75!black]{$1}{}
+		${0:${VISUAL}}
+	\end{definition}
+
+snippet sol "solution" iA
+	 \sol \\\\
+	
+
+snippet note "note" iA
+	\begin{note}
+		${0:${VISUAL}}
+	\end{note}
+
+snippet appr "approx" iA
+	\approx 
+
+snippet un "unit" iA
+	\;\unit{${1}} 
+
+snippet eq "equation" iA
+	\begin{equation*}
+	\begin{split}
+	${0:${VISUAL}}
+	\end{split}
+	\end{equation*}
+
+snippet dv "derivative" iA
+	\dv{${1:x}} $0
+
+snippet func "function" iA
+	f(${1})= $0
+
+snippet ce "chemistry" iA
+	\ce{${1}} $0
+
+snippet dot "cdot" iA
+	\cdot 
+
+snippet cref "cleveref" iA
+	\cref{${1}}
+
+snippet qty "quantity" iA
+	\qty{${1}}{${2}}$0
+
+snippet par "parentheses" iA
+	\left(${1}\right) $0
+
+snippet 1ex "new line" iA
+	\\\[1ex]
+	$0
+
+snippet txt "text" iA
+	\text{${1}} $0
+
+snippet deg "degrees" iA
+	\degree 
+
+snippet abs "absolute value" iA
+	\abs{${1}} $0
+
+snippet cvec "column vector" iA
+	\mqty(${1}\\\\ ${2}) $0
+
+snippet vec "vector" iA
+	\va{${1}} $0
+
+snippet vvec "vector with more letters" iA
+	\overrightarrow{\textbf{${1}}} $0
+
+snippet ort "orthogonal" iA
+	\perp 
+
+snippet para "parallel" iA
+	\parallel 
+
+snippet det "determinant" iA
+	\mdet{${1} & ${2} \\\\ ${3} & ${4}} $0
+
+snippet sec* "section*" iA
+	\section*{${1}}
+	$0
+
+snippet sub* "subsection*" iA
+	\subsection*{${1}}
+	$0
+
+snippet theo "Theorem" iA
+	\begin{Theorem}{$1}{}
+		${2:${VISUAL}}
+	\end{Theorem}
+	$0
+
+snippet exa "Example" Ai
+	\begin{Example}{$1}{}
+		${2:${VISUAL}}
+	\end{Example}
+	$0
 
 
 

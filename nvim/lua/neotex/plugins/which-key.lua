@@ -297,6 +297,10 @@ return {
           "<cmd>read ~/.config/nvim/templates/MultipleAnswer.tex<CR>",
           "MultipleAnswer.tex",
         },
+        q = {
+          "<cmd>read ~/.config/nvim/templates/NiceArticle.tex<CR>",
+          "Mat skabelon",
+        },
       },
     },
   },
